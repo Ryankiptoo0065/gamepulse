@@ -1219,7 +1219,7 @@
         </div>
       </div>
       <p>Honest reviews and fast news for casual gamers who just want to know what's worth their time.</p>
-      <button class="admin-link" onclick="openAdminGate()">Admin</button>
+      <button class="admin-link" id="adminLinkBtn" type="button">Admin</button>
     </div>
     <div class="social">
       <span title="Twitter">𝕏</span>
@@ -1421,53 +1421,69 @@
   let editingId = null;
 
   function openAdminGate() {
-    document.getElementById('adminPassword').value = '';
-    document.getElementById('adminError').classList.remove('show');
-    document.getElementById('adminGate').classList.add('active');
+    const pwInput = document.getElementById('adminPassword');
+    const err = document.getElementById('adminError');
+    const gate = document.getElementById('adminGate');
+    if (pwInput) pwInput.value = '';
+    if (err) err.classList.remove('show');
+    if (gate) gate.classList.add('active');
   }
   function closeAdminGate() {
-    document.getElementById('adminGate').classList.remove('active');
+    const gate = document.getElementById('adminGate');
+    if (gate) gate.classList.remove('active');
   }
   function checkAdminPassword() {
-    const val = document.getElementById('adminPassword').value;
-    if (val === ADMIN_PASSWORD) {
+    const pwInput = document.getElementById('adminPassword');
+    const err = document.getElementById('adminError');
+    if (!pwInput) return;
+    if (pwInput.value === ADMIN_PASSWORD) {
       closeAdminGate();
       openAdminPanel();
-    } else {
-      document.getElementById('adminError').classList.add('show');
+    } else if (err) {
+      err.classList.add('show');
     }
   }
 
   function openAdminPanel() {
     switchAdminTab('add');
     resetForm();
-    document.getElementById('adminPanel').classList.add('active');
+    const panel = document.getElementById('adminPanel');
+    if (panel) panel.classList.add('active');
   }
   function closeAdminPanel() {
-    document.getElementById('adminPanel').classList.remove('active');
+    const panel = document.getElementById('adminPanel');
+    if (panel) panel.classList.remove('active');
     cancelEdit();
   }
 
   function switchAdminTab(tab) {
-    document.getElementById('tabAddBtn').classList.toggle('active', tab === 'add');
-    document.getElementById('tabManageBtn').classList.toggle('active', tab === 'manage');
-    document.getElementById('addTabContent').style.display = tab === 'add' ? 'block' : 'none';
-    document.getElementById('manageTabContent').style.display = tab === 'manage' ? 'block' : 'none';
+    const tabAdd = document.getElementById('tabAddBtn');
+    const tabManage = document.getElementById('tabManageBtn');
+    const addContent = document.getElementById('addTabContent');
+    const manageContent = document.getElementById('manageTabContent');
+    if (tabAdd) tabAdd.classList.toggle('active', tab === 'add');
+    if (tabManage) tabManage.classList.toggle('active', tab === 'manage');
+    if (addContent) addContent.style.display = tab === 'add' ? 'block' : 'none';
+    if (manageContent) manageContent.style.display = tab === 'manage' ? 'block' : 'none';
     if (tab === 'manage') renderManageList();
   }
 
   function resetForm() {
-    document.getElementById('formTitle').value = '';
-    document.getElementById('formScore').value = '';
-    document.getElementById('formSummary').value = '';
-    document.getElementById('formIcon').value = '';
-    document.getElementById('formBody').value = '';
-    document.getElementById('formError').classList.remove('show');
-    document.getElementById('formSuccess').classList.remove('show');
+    const ids = ['formTitle', 'formScore', 'formSummary', 'formIcon', 'formBody'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.value = '';
+    });
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
+    if (formError) formError.classList.remove('show');
+    if (formSuccess) formSuccess.classList.remove('show');
     setArticleType('review');
     editingId = null;
-    document.getElementById('cancelEditBtn').style.display = 'none';
-    document.getElementById('publishBtn').textContent = 'Publish';
+    const cancelBtn = document.getElementById('cancelEditBtn');
+    const publishBtn = document.getElementById('publishBtn');
+    if (cancelBtn) cancelBtn.style.display = 'none';
+    if (publishBtn) publishBtn.textContent = 'Publish';
   }
 
   function cancelEdit() {
@@ -1477,15 +1493,20 @@
 
   function setArticleType(type) {
     currentArticleType = type;
-    document.getElementById('typeReviewBtn').classList.toggle('active', type === 'review');
-    document.getElementById('typeNewsBtn').classList.toggle('active', type === 'news');
-    document.getElementById('scoreFieldWrap').style.display = type === 'review' ? 'block' : 'none';
+    const reviewBtn = document.getElementById('typeReviewBtn');
+    const newsBtn = document.getElementById('typeNewsBtn');
+    const scoreWrap = document.getElementById('scoreFieldWrap');
+    if (reviewBtn) reviewBtn.classList.toggle('active', type === 'review');
+    if (newsBtn) newsBtn.classList.toggle('active', type === 'news');
+    if (scoreWrap) scoreWrap.style.display = type === 'review' ? 'block' : 'none';
   }
 
   function setManageFilter(filter) {
     currentManageFilter = filter;
-    document.getElementById('manageReviewsBtn').classList.toggle('active', filter === 'reviews');
-    document.getElementById('manageNewsBtn').classList.toggle('active', filter === 'news');
+    const reviewsBtn = document.getElementById('manageReviewsBtn');
+    const newsBtn = document.getElementById('manageNewsBtn');
+    if (reviewsBtn) reviewsBtn.classList.toggle('active', filter === 'reviews');
+    if (newsBtn) newsBtn.classList.toggle('active', filter === 'news');
     renderManageList();
   }
 
@@ -1531,16 +1552,20 @@
     setArticleType(type === 'reviews' ? 'review' : 'news');
     editingId = id;
 
-    document.getElementById('formTitle').value = item.title || '';
-    document.getElementById('formGenre').value = type === 'reviews' ? (item.genre || 'action') : (item.tag || 'indie');
-    document.getElementById('formScore').value = item.score && item.score !== '—' ? item.score : '';
-    document.getElementById('formSummary').value = item.desc || '';
-    document.getElementById('formIcon').value = item.icon || '';
-    document.getElementById('formBody').value = (item.body || []).join('\n\n');
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+    set('formTitle', item.title || '');
+    set('formGenre', type === 'reviews' ? (item.genre || 'action') : (item.tag || 'indie'));
+    set('formScore', item.score && item.score !== '—' ? item.score : '');
+    set('formSummary', item.desc || '');
+    set('formIcon', item.icon || '');
+    set('formBody', (item.body || []).join('\n\n'));
 
-    document.getElementById('cancelEditBtn').style.display = 'block';
-    document.getElementById('publishBtn').textContent = 'Save Changes';
-    document.getElementById('formSuccess').classList.remove('show');
+    const cancelBtn = document.getElementById('cancelEditBtn');
+    const publishBtn = document.getElementById('publishBtn');
+    const formSuccess = document.getElementById('formSuccess');
+    if (cancelBtn) cancelBtn.style.display = 'block';
+    if (publishBtn) publishBtn.textContent = 'Save Changes';
+    if (formSuccess) formSuccess.classList.remove('show');
   }
 
   async function deleteArticle(id, type) {
@@ -1578,18 +1603,22 @@
   }
 
   async function submitArticle() {
-    const title = document.getElementById('formTitle').value.trim();
-    const body = document.getElementById('formBody').value.trim();
-    const genre = document.getElementById('formGenre').value;
-    const score = document.getElementById('formScore').value;
-    const summary = document.getElementById('formSummary').value.trim() || body.slice(0, 110) + '...';
-    const icon = document.getElementById('formIcon').value.trim() || '🎮';
+    const get = (id) => { const el = document.getElementById(id); return el ? el.value : ''; };
+    const title = get('formTitle').trim();
+    const body = get('formBody').trim();
+    const genre = get('formGenre') || 'action';
+    const score = get('formScore');
+    const summary = get('formSummary').trim() || body.slice(0, 110) + '...';
+    const icon = get('formIcon').trim() || '🎮';
+
+    const formError = document.getElementById('formError');
+    const formSuccess = document.getElementById('formSuccess');
 
     if (!title || !body) {
-      document.getElementById('formError').classList.add('show');
+      if (formError) formError.classList.add('show');
       return;
     }
-    document.getElementById('formError').classList.remove('show');
+    if (formError) formError.classList.remove('show');
 
     const paragraphs = body.split(/\n\s*\n/).filter(p => p.trim());
     const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
@@ -1633,8 +1662,10 @@
 
     renderTrending();
     await saveCustomArticles();
-    document.getElementById('formSuccess').textContent = editingId ? 'Changes saved!' : 'Published! Find it in the Reviews/News section.';
-    document.getElementById('formSuccess').classList.add('show');
+    if (formSuccess) {
+      formSuccess.textContent = editingId ? 'Changes saved!' : 'Published! Find it in the Reviews/News section.';
+      formSuccess.classList.add('show');
+    }
     setTimeout(() => { resetForm(); }, 1200);
   }
 
@@ -1685,8 +1716,18 @@
     renderReviews(genre);
   }
 
+  // Bind static buttons immediately, independent of async data loading
+  const adminBtn = document.getElementById('adminLinkBtn');
+  if (adminBtn) {
+    adminBtn.addEventListener('click', openAdminGate);
+  }
+
   async function init() {
-    await loadCustomArticles();
+    try {
+      await loadCustomArticles();
+    } catch (e) {
+      console.error('Could not load custom articles', e);
+    }
     renderNews('all');
     renderReviews('all');
     renderGenres();
