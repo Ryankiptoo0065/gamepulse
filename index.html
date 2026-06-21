@@ -688,6 +688,322 @@
     color: var(--muted);
   }
 
+  /* --- Article view --- */
+  .article-view {
+    display: none;
+    max-width: 760px;
+    margin: 40px auto 0;
+    padding: 0 24px 60px;
+  }
+
+  .article-view.active { display: block; }
+  .home-view.hidden { display: none; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(21,21,22,0.85);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 28px;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .back-btn:hover { border-color: var(--red); color: var(--red); }
+
+  .article-hero-img {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 28px;
+    border: 1px solid var(--border);
+    position: relative;
+    min-height: 220px;
+  }
+
+  .article-hero-img img {
+    width: 100%;
+    display: block;
+  }
+
+  .article-hero-fallback {
+    width: 100%;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 24px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 24px),
+      radial-gradient(ellipse 80% 70% at 50% 50%, rgba(255,43,61,0.18), transparent 70%),
+      var(--bg2);
+  }
+
+  .article-hero-fallback .icon-big {
+    font-size: 64px;
+    filter: drop-shadow(0 4px 16px rgba(0,0,0,0.4));
+  }
+
+  .article-score-float {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background: rgba(10,10,10,0.85);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-size: 22px;
+    font-weight: 800;
+    padding: 8px 16px;
+    border-radius: 10px;
+    backdrop-filter: blur(6px);
+  }
+
+  .article-score-float small {
+    display: block;
+    font-size: 9px;
+    color: var(--muted);
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .article-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .article-view h1 {
+    font-size: 32px;
+    font-weight: 800;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+
+  .article-byline {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .article-body {
+    font-size: 16px;
+    line-height: 1.85;
+    color: #d8d8d6;
+  }
+
+  .article-body p { margin-bottom: 20px; }
+
+  .article-footer-cta {
+    margin-top: 40px;
+    padding-top: 28px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  @media (max-width: 480px) {
+    .article-view h1 { font-size: 24px; }
+    .article-body { font-size: 15px; }
+    .article-score-float { font-size: 17px; padding: 7px 12px; }
+  }
+
+  /* --- Admin --- */
+  .admin-link {
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 11px;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    margin-top: 14px;
+  }
+  .admin-link:hover { color: var(--text); }
+
+  .admin-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px);
+    z-index: 1500;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .admin-overlay.active { display: flex; }
+
+  .admin-modal {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+    max-width: 480px;
+    width: 100%;
+    max-height: 86vh;
+    overflow-y: auto;
+  }
+
+  .admin-modal h3 {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
+  }
+  .admin-modal .sub { font-size: 12.5px; color: var(--muted); margin-bottom: 22px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-family: inherit;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--red); }
+
+  .form-group textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+
+  .form-row { display: flex; gap: 12px; }
+  .form-row .form-group { flex: 1; }
+
+  .toggle-row { display: flex; gap: 8px; margin-bottom: 16px; }
+  .toggle-btn {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .toggle-btn.active { background: var(--red); border-color: var(--red); color: #fff; }
+
+  .admin-actions { display: flex; gap: 10px; margin-top: 22px; }
+  .admin-actions button { flex: 1; }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 20px;
+    font-weight: 700;
+    font-size: 13px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btn-secondary:hover { border-color: var(--muted); }
+
+  .form-error { color: var(--red); font-size: 12px; margin-top: -8px; margin-bottom: 14px; display: none; }
+  .form-error.show { display: block; }
+
+  .form-success { color: #4ade80; font-size: 12px; margin-top: -8px; margin-bottom: 14px; display: none; }
+  .form-success.show { display: block; }
+
+  /* --- Manage list --- */
+  .admin-tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .admin-tab {
+    flex: 1;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .admin-tab.active { background: rgba(255,43,61,0.12); border-color: var(--red); color: var(--red); }
+
+  .manage-list { display: flex; flex-direction: column; gap: 10px; max-height: 320px; overflow-y: auto; margin-bottom: 8px; }
+
+  .manage-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+
+  .manage-item .manage-icon {
+    width: 34px; height: 34px;
+    border-radius: 7px;
+    background: rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .manage-item .manage-info { flex: 1; min-width: 0; }
+  .manage-item .manage-info h6 {
+    font-size: 13px; font-weight: 700;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .manage-item .manage-info span { font-size: 11px; color: var(--muted); }
+
+  .manage-actions { display: flex; gap: 6px; flex-shrink: 0; }
+  .manage-actions button {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .manage-actions .edit-btn:hover { border-color: var(--yellow); color: var(--yellow); }
+  .manage-actions .delete-btn:hover { border-color: var(--red); color: var(--red); }
+
+  .manage-empty { color: var(--muted); font-size: 13px; text-align: center; padding: 30px 0; }
+
+  .builtin-note {
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-top: 4px;
+  }
+
   @media (max-width: 800px) {
     nav { display: none; }
     .hamburger { display: flex; }
@@ -828,6 +1144,8 @@
   </div>
 </header>
 
+<div class="home-view" id="homeView">
+
 <section class="hero" id="home">
   <div class="hero-grid">
     <div class="hero-card">
@@ -879,6 +1197,13 @@
   <div class="grid" id="genreGrid"></div>
 </section>
 
+</div>
+
+<div class="article-view" id="articleView">
+  <button class="back-btn" onclick="closeArticle()">← Back to GamePulse</button>
+  <div id="articleContent"></div>
+</div>
+
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -894,6 +1219,7 @@
         </div>
       </div>
       <p>Honest reviews and fast news for casual gamers who just want to know what's worth their time.</p>
+      <button class="admin-link" onclick="openAdminGate()">Admin</button>
     </div>
     <div class="social">
       <span title="Twitter">𝕏</span>
@@ -932,22 +1258,32 @@
   const emojis = ['🚀','🗡️','👾','🏰','🐉','🎲','🛡️','🌌','🧙','🏎️','🤖','🦖','🪂','🌿'];
   function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-  const newsData = [
-    { tag: 'big', label: 'Big Release', title: 'Retro Revival Bundle launches Friday with 12 classics', desc: 'A surprise drop bundles a dozen remastered arcade classics into one pack, complete with new leaderboards.', time: '2 hrs ago', author: 'J. Kovacs' },
-    { tag: 'indie', label: 'Indie', title: '"Glitch Garden" surprises everyone at showcase', desc: 'A tiny two-person team stole the showcase with a puzzle-platformer about a corrupted save file.', time: '5 hrs ago', author: 'M. Okafor' },
-    { tag: 'retro', label: 'Retro', title: 'Original arcade cabinet found in storage unit, fully working', desc: 'A collector unearthed a decades-old cabinet that still boots up and accepts quarters.', time: '8 hrs ago', author: 'T. Nakashima' },
-    { tag: 'indie', label: 'Indie', title: 'Solo dev funds sequel entirely through pixel art sales', desc: 'An unconventional crowdfunding approach is paying off for one determined creator.', time: '1 day ago', author: 'R. Santos' },
-    { tag: 'big', label: 'Big Release', title: 'Long-awaited sequel finally gets a release window', desc: 'After years of teasers, fans finally have a release window to circle on the calendar.', time: '1 day ago', author: 'J. Kovacs' },
-    { tag: 'retro', label: 'Retro', title: 'Speedrunner shaves 40 seconds off 20-year-old record', desc: 'A new route through the second level rewrites a record that stood since the early 2000s.', time: '2 days ago', author: 'M. Okafor' },
+  let newsData = [
+    { id: 'news-1', tag: 'big', label: 'Big Release', title: 'Retro Revival Bundle launches Friday with 12 classics', desc: 'A surprise drop bundles a dozen remastered arcade classics into one pack, complete with new leaderboards.', time: '2 hrs ago', author: 'J. Kovacs' },
+    { id: 'news-2', tag: 'indie', label: 'Indie', title: '"Glitch Garden" surprises everyone at showcase', desc: 'A tiny two-person team stole the showcase with a puzzle-platformer about a corrupted save file.', time: '5 hrs ago', author: 'M. Okafor' },
+    { id: 'news-3', tag: 'retro', label: 'Retro', title: 'Original arcade cabinet found in storage unit, fully working', desc: 'A collector unearthed a decades-old cabinet that still boots up and accepts quarters.', time: '8 hrs ago', author: 'T. Nakashima' },
+    { id: 'news-4', tag: 'indie', label: 'Indie', title: 'Solo dev funds sequel entirely through pixel art sales', desc: 'An unconventional crowdfunding approach is paying off for one determined creator.', time: '1 day ago', author: 'R. Santos' },
+    { id: 'news-5', tag: 'big', label: 'Big Release', title: 'Long-awaited sequel finally gets a release window', desc: 'After years of teasers, fans finally have a release window to circle on the calendar.', time: '1 day ago', author: 'J. Kovacs' },
+    { id: 'news-6', tag: 'retro', label: 'Retro', title: 'Speedrunner shaves 40 seconds off 20-year-old record', desc: 'A new route through the second level rewrites a record that stood since the early 2000s.', time: '2 days ago', author: 'M. Okafor' },
   ];
 
-  const reviewsData = [
-    { genre: 'action', score: '8.7', title: 'Crimson Vector', desc: 'A neon-soaked bullet-hell that rewards precision over panic. Punishing, but fair.', icon: '🚀' },
-    { genre: 'platformer', score: '9.0', title: 'Glitch Garden', desc: 'Tight controls and a clever corruption mechanic make every level feel fresh.', icon: '🌿' },
-    { genre: 'rpg', score: '7.8', title: 'Last Light Tactics', desc: 'A turn-based tactics game with a story that takes a while to find its footing.', icon: '🗡️' },
-    { genre: 'action', score: '8.2', title: 'Iron Tide', desc: 'Mech combat that feels weighty and satisfying, even if the campaign runs short.', icon: '🤖' },
-    { genre: 'platformer', score: '8.9', title: 'Skyward Drift', desc: 'A momentum-based platformer that turns every screen into a tiny puzzle box.', icon: '🪂' },
-    { genre: 'rpg', score: '9.1', title: 'Wraith of the Old Kingdom', desc: 'Dense, atmospheric, and unafraid to let silence do the storytelling.', icon: '🐉' },
+  let reviewsData = [
+    { id: 'efootball', genre: 'sports', score: '9.0', title: 'eFootball', desc: 'Konami\'s free-to-play football sim delivers smooth, satisfying gameplay backed by a steady stream of weekly content.', icon: '⚽',
+      image: null,
+      author: 'GamePulse Staff', date: 'June 21, 2026',
+      body: [
+        "eFootball has quietly become one of the most consistent sports titles on the market, and after spending real time with it this season, it's easy to see why. The game plays nice — genuinely nice — especially when running on medium graphics settings, where the balance between visual fidelity and smooth performance hits a sweet spot most free-to-play sports games struggle to find.",
+        "What stands out most is how alive the game feels week to week. Player cards roll out on a weekly basis, keeping the roster feeling current, and player stats get reviewed and adjusted occasionally to reflect real-world form. It's a small touch, but it goes a long way toward making the game feel like a living product rather than a static release.",
+        "The pack system deserves a mention too. Regular player packs sit alongside Epic player packs, giving a clear sense of progression and excitement when chasing standout cards. It's a structure that rewards both patience and a bit of luck, without feeling overly predatory.",
+        "Across the board — gameplay, presentation, and the ongoing content cadence — eFootball delivers a genuinely nice experience. It's not flashy in the way full-price franchises are, but it doesn't need to be. It just plays well, updates often, and keeps giving players reasons to come back."
+      ]
+    },
+    { id: 'glitch-garden', genre: 'platformer', score: '9.0', title: 'Glitch Garden', desc: 'Tight controls and a clever corruption mechanic make every level feel fresh.', icon: '🌿', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
+    { id: 'last-light', genre: 'rpg', score: '7.8', title: 'Last Light Tactics', desc: 'A turn-based tactics game with a story that takes a while to find its footing.', icon: '🗡️', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
+    { id: 'crimson-vector', genre: 'action', score: '8.7', title: 'Crimson Vector', desc: 'A neon-soaked bullet-hell that rewards precision over panic. Punishing, but fair.', icon: '🚀', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
+    { id: 'iron-tide', genre: 'action', score: '8.2', title: 'Iron Tide', desc: 'Mech combat that feels weighty and satisfying, even if the campaign runs short.', icon: '🤖', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
+    { id: 'skyward-drift', genre: 'platformer', score: '8.9', title: 'Skyward Drift', desc: 'A momentum-based platformer that turns every screen into a tiny puzzle box.', icon: '🪂', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
+    { id: 'wraith', genre: 'rpg', score: '9.1', title: 'Wraith of the Old Kingdom', desc: 'Dense, atmospheric, and unafraid to let silence do the storytelling.', icon: '🐉', image: null, author: 'GamePulse Staff', date: 'June 2026', body: ["Full review coming soon."] },
   ];
 
   const genreData = [
@@ -960,13 +1296,13 @@
   ];
 
   const trending = [
-    { title: 'Nebula Drift review goes live', meta: 'Reviews · 9.2', icon: '🚀' },
-    { title: 'Retro Revival Bundle announced', meta: 'News · Big Release', icon: '🕹️' },
-    { title: 'Glitch Garden dev AMA recap', meta: 'News · Indie', icon: '🌿' },
-    { title: 'Wraith of the Old Kingdom review', meta: 'Reviews · 9.1', icon: '🐉' },
+    { title: 'eFootball review goes live', meta: 'Reviews · 9.0', icon: '⚽', articleId: 'efootball' },
+    { title: 'Retro Revival Bundle announced', meta: 'News · Big Release', icon: '🕹️', articleId: null },
+    { title: 'Glitch Garden dev AMA recap', meta: 'News · Indie', icon: '🌿', articleId: null },
+    { title: 'Wraith of the Old Kingdom review', meta: 'Reviews · 9.1', icon: '🐉', articleId: 'wraith' },
   ];
 
-  function tagClass(tag) { return { indie: 'tag-indie', retro: 'tag-retro', big: 'tag-big' }[tag] || 'tag-retro'; }
+  function tagClass(tag) { return { indie: 'tag-indie', retro: 'tag-retro', big: 'tag-big', sports: 'tag-indie', action: 'tag-big', platformer: 'tag-retro', rpg: 'tag-indie' }[tag] || 'tag-retro'; }
 
   function renderNews(filter) {
     const grid = document.getElementById('newsGrid');
@@ -975,7 +1311,7 @@
     items.forEach(item => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.onclick = () => sendPrompt(`Tell me more about: ${item.title}`);
+      card.onclick = () => item.body ? openNewsArticle(item.id) : sendPrompt(`Tell me more about: ${item.title}`);
       const bg = rand(accents);
       card.innerHTML = `
         <div class="card-thumb" style="background:${bg};">${rand(emojis)}</div>
@@ -992,6 +1328,31 @@
     });
   }
 
+  function openNewsArticle(id) {
+    const item = newsData.find(n => n.id === id);
+    if (!item || !item.body) return;
+    const content = document.getElementById('articleContent');
+    content.innerHTML = `
+      <div class="article-hero-img"><div class="article-hero-fallback"><span class="icon-big">${item.icon || '📰'}</span></div></div>
+      <div class="article-meta-row">
+        <span class="card-tag ${tagClass(item.tag)}">${item.label}</span>
+        <span class="card-tag tag-retro">News</span>
+      </div>
+      <h1>${item.title}</h1>
+      <div class="article-byline">By ${item.author || 'GamePulse Staff'} · ${item.time}</div>
+      <div class="article-body">
+        ${item.body.map(p => `<p>${p}</p>`).join('')}
+      </div>
+      <div class="article-footer-cta">
+        <div></div>
+        <button class="btn-primary" onclick="closeArticle()">Back to Home</button>
+      </div>
+    `;
+    document.getElementById('homeView').classList.add('hidden');
+    document.getElementById('articleView').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
   function renderReviews(filter) {
     const grid = document.getElementById('reviewsGrid');
     grid.innerHTML = '';
@@ -999,10 +1360,13 @@
     items.forEach(item => {
       const card = document.createElement('div');
       card.className = 'card';
-      card.onclick = () => sendPrompt(`Tell me more about the review of ${item.title}`);
+      card.onclick = () => openArticle(item.id);
       const bg = rand(accents);
+      const thumbStyle = item.image
+        ? `background-image:url('${item.image}'); background-size:cover; background-position:center;`
+        : `background:${bg};`;
       card.innerHTML = `
-        <div class="card-thumb" style="background:${bg};">${item.icon}</div>
+        <div class="card-thumb" style="${thumbStyle}">${item.image ? '' : item.icon}</div>
         <div class="card-body">
           <span class="card-tag tag-retro">${item.genre}</span>
           <h4>${item.title}</h4>
@@ -1014,6 +1378,264 @@
         </div>`;
       grid.appendChild(card);
     });
+  }
+
+  function openArticle(id) {
+    const item = reviewsData.find(r => r.id === id);
+    if (!item) return;
+    const content = document.getElementById('articleContent');
+    const heroImg = item.image
+      ? `<div class="article-hero-img"><img src="${item.image}" alt="${item.title}"><div class="article-score-float">${item.score}<small>SCORE</small></div></div>`
+      : `<div class="article-hero-img"><div class="article-hero-fallback"><span class="icon-big">${item.icon}</span><div class="article-score-float">${item.score}<small>SCORE</small></div></div></div>`;
+    content.innerHTML = `
+      ${heroImg}
+      <div class="article-meta-row">
+        <span class="card-tag tag-retro">${item.genre}</span>
+        <span class="card-tag tag-big">Review</span>
+      </div>
+      <h1>${item.title}</h1>
+      <div class="article-byline">By ${item.author} · ${item.date}</div>
+      <div class="article-body">
+        ${item.body.map(p => `<p>${p}</p>`).join('')}
+      </div>
+      <div class="article-footer-cta">
+        <div class="score-pill"><b>${item.score}</b> / 10</div>
+        <button class="btn-primary" onclick="closeArticle()">Back to Home</button>
+      </div>
+    `;
+    document.getElementById('homeView').classList.add('hidden');
+    document.getElementById('articleView').classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  function closeArticle() {
+    document.getElementById('articleView').classList.remove('active');
+    document.getElementById('homeView').classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }
+
+  /* --- Admin panel --- */
+  const ADMIN_PASSWORD = 'gamepulse2026';
+  let currentArticleType = 'review';
+  let currentManageFilter = 'reviews';
+  let editingId = null;
+
+  function openAdminGate() {
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminError').classList.remove('show');
+    document.getElementById('adminGate').classList.add('active');
+  }
+  function closeAdminGate() {
+    document.getElementById('adminGate').classList.remove('active');
+  }
+  function checkAdminPassword() {
+    const val = document.getElementById('adminPassword').value;
+    if (val === ADMIN_PASSWORD) {
+      closeAdminGate();
+      openAdminPanel();
+    } else {
+      document.getElementById('adminError').classList.add('show');
+    }
+  }
+
+  function openAdminPanel() {
+    switchAdminTab('add');
+    resetForm();
+    document.getElementById('adminPanel').classList.add('active');
+  }
+  function closeAdminPanel() {
+    document.getElementById('adminPanel').classList.remove('active');
+    cancelEdit();
+  }
+
+  function switchAdminTab(tab) {
+    document.getElementById('tabAddBtn').classList.toggle('active', tab === 'add');
+    document.getElementById('tabManageBtn').classList.toggle('active', tab === 'manage');
+    document.getElementById('addTabContent').style.display = tab === 'add' ? 'block' : 'none';
+    document.getElementById('manageTabContent').style.display = tab === 'manage' ? 'block' : 'none';
+    if (tab === 'manage') renderManageList();
+  }
+
+  function resetForm() {
+    document.getElementById('formTitle').value = '';
+    document.getElementById('formScore').value = '';
+    document.getElementById('formSummary').value = '';
+    document.getElementById('formIcon').value = '';
+    document.getElementById('formBody').value = '';
+    document.getElementById('formError').classList.remove('show');
+    document.getElementById('formSuccess').classList.remove('show');
+    setArticleType('review');
+    editingId = null;
+    document.getElementById('cancelEditBtn').style.display = 'none';
+    document.getElementById('publishBtn').textContent = 'Publish';
+  }
+
+  function cancelEdit() {
+    editingId = null;
+    resetForm();
+  }
+
+  function setArticleType(type) {
+    currentArticleType = type;
+    document.getElementById('typeReviewBtn').classList.toggle('active', type === 'review');
+    document.getElementById('typeNewsBtn').classList.toggle('active', type === 'news');
+    document.getElementById('scoreFieldWrap').style.display = type === 'review' ? 'block' : 'none';
+  }
+
+  function setManageFilter(filter) {
+    currentManageFilter = filter;
+    document.getElementById('manageReviewsBtn').classList.toggle('active', filter === 'reviews');
+    document.getElementById('manageNewsBtn').classList.toggle('active', filter === 'news');
+    renderManageList();
+  }
+
+  function renderManageList() {
+    const list = document.getElementById('manageList');
+    list.innerHTML = '';
+    const items = currentManageFilter === 'reviews' ? reviewsData : newsData;
+
+    if (items.length === 0) {
+      list.innerHTML = '<div class="manage-empty">Nothing here yet.</div>';
+      return;
+    }
+
+    items.forEach(item => {
+      const row = document.createElement('div');
+      row.className = 'manage-item';
+      const label = currentManageFilter === 'reviews'
+        ? `${item.genre} · ★ ${item.score}`
+        : `${item.label || item.tag} · ${item.time || ''}`;
+      row.innerHTML = `
+        <div class="manage-icon">${item.icon || '🎮'}</div>
+        <div class="manage-info">
+          <h6>${item.title}</h6>
+          <span>${label}</span>
+        </div>
+        <div class="manage-actions">
+          <button class="edit-btn">Edit</button>
+          <button class="delete-btn">Delete</button>
+        </div>
+      `;
+      row.querySelector('.edit-btn').onclick = () => editArticle(item.id, currentManageFilter);
+      row.querySelector('.delete-btn').onclick = () => deleteArticle(item.id, currentManageFilter);
+      list.appendChild(row);
+    });
+  }
+
+  function editArticle(id, type) {
+    const arr = type === 'reviews' ? reviewsData : newsData;
+    const item = arr.find(a => a.id === id);
+    if (!item) return;
+
+    switchAdminTab('add');
+    setArticleType(type === 'reviews' ? 'review' : 'news');
+    editingId = id;
+
+    document.getElementById('formTitle').value = item.title || '';
+    document.getElementById('formGenre').value = type === 'reviews' ? (item.genre || 'action') : (item.tag || 'indie');
+    document.getElementById('formScore').value = item.score && item.score !== '—' ? item.score : '';
+    document.getElementById('formSummary').value = item.desc || '';
+    document.getElementById('formIcon').value = item.icon || '';
+    document.getElementById('formBody').value = (item.body || []).join('\n\n');
+
+    document.getElementById('cancelEditBtn').style.display = 'block';
+    document.getElementById('publishBtn').textContent = 'Save Changes';
+    document.getElementById('formSuccess').classList.remove('show');
+  }
+
+  async function deleteArticle(id, type) {
+    if (type === 'reviews') {
+      reviewsData = reviewsData.filter(a => a.id !== id);
+      renderReviews('all');
+    } else {
+      newsData = newsData.filter(a => a.id !== id);
+      renderNews('all');
+    }
+    renderTrending();
+    renderManageList();
+    await saveCustomArticles();
+  }
+
+  async function loadCustomArticles() {
+    try {
+      const result = await window.storage.get('custom-articles', true);
+      if (result && result.value) {
+        const data = JSON.parse(result.value);
+        if (data.reviews) reviewsData = data.reviews;
+        if (data.news) newsData = data.news;
+      }
+    } catch (e) {
+      // no saved articles yet, defaults remain
+    }
+  }
+
+  async function saveCustomArticles() {
+    try {
+      await window.storage.set('custom-articles', JSON.stringify({ reviews: reviewsData, news: newsData }), true);
+    } catch (e) {
+      console.error('Failed to save articles', e);
+    }
+  }
+
+  async function submitArticle() {
+    const title = document.getElementById('formTitle').value.trim();
+    const body = document.getElementById('formBody').value.trim();
+    const genre = document.getElementById('formGenre').value;
+    const score = document.getElementById('formScore').value;
+    const summary = document.getElementById('formSummary').value.trim() || body.slice(0, 110) + '...';
+    const icon = document.getElementById('formIcon').value.trim() || '🎮';
+
+    if (!title || !body) {
+      document.getElementById('formError').classList.add('show');
+      return;
+    }
+    document.getElementById('formError').classList.remove('show');
+
+    const paragraphs = body.split(/\n\s*\n/).filter(p => p.trim());
+    const today = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+    if (editingId) {
+      if (currentArticleType === 'review') {
+        const item = reviewsData.find(r => r.id === editingId);
+        if (item) {
+          item.title = title; item.genre = genre;
+          item.score = score ? parseFloat(score).toFixed(1) : '—';
+          item.desc = summary; item.icon = icon; item.body = paragraphs;
+        }
+        renderReviews('all');
+      } else {
+        const item = newsData.find(n => n.id === editingId);
+        if (item) {
+          item.title = title; item.tag = genre;
+          item.label = genre.charAt(0).toUpperCase() + genre.slice(1);
+          item.desc = summary; item.icon = icon; item.body = paragraphs;
+        }
+        renderNews('all');
+      }
+    } else {
+      const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') + '-' + Date.now();
+      if (currentArticleType === 'review') {
+        reviewsData.unshift({
+          id, genre, score: score ? parseFloat(score).toFixed(1) : '—',
+          title, desc: summary, icon, image: null,
+          author: 'GamePulse Staff', date: today, body: paragraphs, custom: true
+        });
+        renderReviews('all');
+      } else {
+        newsData.unshift({
+          id, tag: genre, label: genre.charAt(0).toUpperCase() + genre.slice(1),
+          title, desc: summary, icon, image: null,
+          time: 'Just now', author: 'GamePulse Staff', body: paragraphs, custom: true
+        });
+        renderNews('all');
+      }
+    }
+
+    renderTrending();
+    await saveCustomArticles();
+    document.getElementById('formSuccess').textContent = editingId ? 'Changes saved!' : 'Published! Find it in the Reviews/News section.';
+    document.getElementById('formSuccess').classList.add('show');
+    setTimeout(() => { resetForm(); }, 1200);
   }
 
   function renderGenres() {
@@ -1039,7 +1661,7 @@
     trending.forEach((t, i) => {
       const el = document.createElement('div');
       el.className = 'mini-item';
-      el.onclick = () => sendPrompt(`Tell me more about: ${t.title}`);
+      el.onclick = () => t.articleId ? openArticle(t.articleId) : sendPrompt(`Tell me more about: ${t.title}`);
       const bg = rand(accents);
       el.innerHTML = `
         <div class="mini-icon" style="background:${bg};">${t.icon}</div>
@@ -1063,10 +1685,14 @@
     renderReviews(genre);
   }
 
-  renderNews('all');
-  renderReviews('all');
-  renderGenres();
-  renderTrending();
+  async function init() {
+    await loadCustomArticles();
+    renderNews('all');
+    renderReviews('all');
+    renderGenres();
+    renderTrending();
+  }
+  init();
 </script>
 
 </body>
